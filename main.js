@@ -16,7 +16,13 @@ module.exports.loop = function () {
     }
 
     spawningPool('Harvester', 'harvester', 2, [WORK,CARRY,MOVE]);
+    
+    unitsRole();
 
+
+}
+
+var unitsRole = function () {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
@@ -29,29 +35,29 @@ module.exports.loop = function () {
             roleUpgrader.run(creep);
         }
     }
-};
-    var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
+}
 
-        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-        console.log(droneName + 's: ' + harvesters.length);
+var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    console.log(droneName + 's: ' + harvesters.length);
+
+    if(harvesters.length < maxAmount) {
+        var newName = droneName + '-' + Game.time;
+        console.log('Spawning new' + droneName + ': ' + newName);
+        Game.spawns['Spawn1'].spawnCreep(droneBody, newName, 
+            {memory: {role: droneRole}});        
+    }
     
-        if(harvesters.length < maxAmount) {
-            var newName = droneName + '-' + Game.time;
-            console.log('Spawning new' + droneName + ': ' + newName);
-            Game.spawns['Spawn1'].spawnCreep(droneBody, newName, 
-                {memory: {role: droneRole}});        
-        }
-        
-        if(Game.spawns['Spawn1'].spawning) { 
-            var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-            Game.spawns['Spawn1'].room.visual.text(
-                '🛠️' + spawningCreep.memory.role,
-                Game.spawns['Spawn1'].pos.x + 1, 
-                Game.spawns['Spawn1'].pos.y, 
-                {align: 'left', opacity: 0.8});
-        }
-    
-    };
+    if(Game.spawns['Spawn1'].spawning) { 
+        var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+        Game.spawns['Spawn1'].room.visual.text(
+            '🛠️' + spawningCreep.memory.role,
+            Game.spawns['Spawn1'].pos.x + 1, 
+            Game.spawns['Spawn1'].pos.y, 
+            {align: 'left', opacity: 0.8});
+    }
+
+}
 
 
 
