@@ -3,17 +3,8 @@ var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 
 module.exports.loop = function () {
-    for(var name in Memory.creeps) {
-        if(!Game.creeps[name]) {
-            delete Memory.creeps[name];
-            console.log('Clearing non-existing creep memory:', name);
-        }
-    }
 
-
-    for(var name in Game.rooms) {
-        console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
-    }
+    deleteCreepsMemory();
 
     spawningPool('droneHarvester', 'harvester', 2, [WORK,CARRY,MOVE]);
     spawningPool('droneBuilder', 'builder', 1, [WORK,CARRY,MOVE]);
@@ -24,6 +15,16 @@ module.exports.loop = function () {
 
 
 }
+
+var deleteCreepsMemory = function () {
+    for(var name in Memory.creeps) {
+        if(!Game.creeps[name]) {
+            delete Memory.creeps[name];
+            console.log('Clearing non-existing creep memory:', name);
+        }
+    }
+}
+
 
 var unitsRole = function () {
     for(var name in Game.creeps) {
@@ -62,6 +63,13 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
 
 }
 
+/*
+    //energyAvailable
+    for(var name in Game.rooms) {
+        console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
+    }
+
+*/
 
 /*
     Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester1', { memory: { role: 'harvester' } } );
