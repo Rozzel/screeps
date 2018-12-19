@@ -1,11 +1,15 @@
 /*
 https://liquipedia.net/starcraft2/Zerg_Units_(Legacy_of_the_Void)
-/Users/vladislav/Library/Application Support/Screeps/scripts/screeps.com/default
+
+JSON.stringify.
 
 Units
 Ground Units
 
 Hatchery
+Lair
+Hive
+
 
 Larva
 Cocoon
@@ -77,5 +81,18 @@ Hive
 Hive
 Greater Spire
 Ultralisk Cavern
+
+
+
+
+Body part       Build cost
+MOVE	        50
+WORK	        100	
+CARRY	        50
+ATTACK	        80
+RANGED_ATTACK	150	
+HEAL            250	
+CLAIM	        600	
+TOUGH	        10
 
 */
