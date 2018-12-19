@@ -10,12 +10,12 @@ module.exports.loop = function () {
         }
     }
 
-    
+
     for(var name in Game.rooms) {
         console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
     }
 
-    spawningPool();
+    spawningPool('Harvester', 'harvester', 2, [WORK,CARRY,MOVE]);
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -30,16 +30,16 @@ module.exports.loop = function () {
         }
     }
 };
-    var spawningPool = function () {
+    var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
 
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-        console.log('Harvesters: ' + harvesters.length);
+        console.log(droneName + 's: ' + harvesters.length);
     
-        if(harvesters.length < 2) {
-            var newName = 'Harvester-' + Game.time;
-            console.log('Spawning new harvester: ' + newName);
-            Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
-                {memory: {role: 'harvester'}});        
+        if(harvesters.length < maxAmount) {
+            var newName = droneName + '-' + Game.time;
+            console.log('Spawning new' + droneName + ': ' + newName);
+            Game.spawns['Spawn1'].spawnCreep(droneBody, newName, 
+                {memory: {role: droneRole}});        
         }
         
         if(Game.spawns['Spawn1'].spawning) { 
