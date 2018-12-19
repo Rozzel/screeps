@@ -8,10 +8,10 @@ module.exports.loop = function () {
 
     sporeCrawler();
 
-    spawningPool('droneHarvester', 'harvester', 2, [WORK,CARRY,MOVE]);
+    spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
     spawningPool('droneBuilder', 'builder', 1, [WORK,CARRY,MOVE]);
     spawningPool('droneUpgrader', 'upgrader', 1, [WORK,CARRY,MOVE]);
-    spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
+    spawningPool('droneHarvester', 'harvester', 2, [WORK,CARRY,MOVE]);
 
     unitsRole();
 
@@ -75,7 +75,7 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
     if(Game.spawns['Hatchery-1'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Hatchery-1'].spawning.name];
         Game.spawns['Hatchery-1'].room.visual.text(
-            '🛠️' + spawningCreep.memory.role,
+            '🛠️ 🛠' + '&#128736;' + 'U+1F6E0' + spawningCreep.memory.role,
             Game.spawns['Hatchery-1'].pos.x + 1, 
             Game.spawns['Hatchery-1'].pos.y, 
             {align: 'left', opacity: 0.8});
