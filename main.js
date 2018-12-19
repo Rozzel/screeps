@@ -75,7 +75,7 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
     if(Game.spawns['Hatchery-1'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Hatchery-1'].spawning.name];
         Game.spawns['Hatchery-1'].room.visual.text(
-            '🛠' + spawningCreep.memory.role,
+            '🛠 ' + spawningCreep.memory.role,
             Game.spawns['Hatchery-1'].pos.x + 1, 
             Game.spawns['Hatchery-1'].pos.y, 
             {align: 'left', opacity: 0.8});
