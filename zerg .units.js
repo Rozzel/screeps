@@ -1,6 +1,6 @@
 /*
 https://liquipedia.net/starcraft2/Zerg_Units_(Legacy_of_the_Void)
-
+/Users/vladislav/Library/Application Support/Screeps/scripts/screeps.com/default
 
 Units
 Ground Units
