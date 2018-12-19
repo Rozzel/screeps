@@ -18,7 +18,8 @@ module.exports.loop = function () {
     spawningPool('droneHarvester', 'harvester', 2, [WORK,CARRY,MOVE]);
     spawningPool('droneBuilder', 'builder', 1, [WORK,CARRY,MOVE]);
     spawningPool('droneUpgrader', 'upgrader', 1, [WORK,CARRY,MOVE]);
-    
+    spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
+
     unitsRole();
 
 
