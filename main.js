@@ -15,7 +15,9 @@ module.exports.loop = function () {
         console.log('Room "'+name+'" has '+Game.rooms[name].energyAvailable+' energy');
     }
 
-    spawningPool('Harvester', 'harvester', 2, [WORK,CARRY,MOVE]);
+    spawningPool('droneHarvester', 'harvester', 2, [WORK,CARRY,MOVE]);
+    spawningPool('droneBuilder', 'builder', 1, [WORK,CARRY,MOVE]);
+    spawningPool('droneUpgrader', 'upgrader', 1, [WORK,CARRY,MOVE]);
     
     unitsRole();
 
@@ -38,7 +40,7 @@ var unitsRole = function () {
 }
 
 var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == droneRole);
     console.log(droneName + 's: ' + harvesters.length);
 
     if(harvesters.length < maxAmount) {
