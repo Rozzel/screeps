@@ -62,14 +62,6 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
 }
 
 
-
-/*
-
-
-
-
-*/
-
 /*
     Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester1', { memory: { role: 'harvester' } } );
     Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Builder1', { memory: { role: 'builder' } } );
