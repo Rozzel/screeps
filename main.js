@@ -94,13 +94,6 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
 }
 
 
-var targetCon = creep.room.find(FIND_STRUCTURES, {
-    filter: (structure) => {
-        return (structure.structureType == STRUCTURE_CONTROLLER);
-    }
-});
-console.log(targetCon);
-
 /*
 
 Game.spawns['Hatchery'].room.createConstructionSite( 23, 22, STRUCTURE_TOWER );
