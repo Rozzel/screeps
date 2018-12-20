@@ -99,7 +99,7 @@ var targetCon = creep.room.find(FIND_STRUCTURES, {
         return (structure.structureType == STRUCTURE_CONTROLLER);
     }
 });
-console.log(targetCon.level);
+console.log(targetCon);
 
 /*
 
