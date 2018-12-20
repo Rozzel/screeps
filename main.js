@@ -19,23 +19,23 @@ module.exports.loop = function () {
     CLAIM	        600	
     TOUGH	        10
 */
-    var controllerLevel = Game.rooms['W36N43'].controller.level;
+var controllerLevel = Game.rooms['W36N43'].controller.level;
 
-    if (controllerLevel == 2) {
-        spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
-        spawningPool('droneBuilder', 'builder', 2, [WORK,WORK,CARRY,MOVE]);
-        
+if (controllerLevel == 2) {
+    spawningPool('droneHarvesterBig', 'harvester', 2, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
+    spawningPool('droneBuilder', 'builder', 4, [WORK,WORK,CARRY,MOVE]);
+    
 
-        var HatcheryPosX = Game.spawns['Hatchery'].pos.x;
-        var HatcheryPosY = Game.spawns['Hatchery'].pos.y;
-        createExtension(HatcheryPosX, HatcheryPosY);
+    var HatcheryPosX = Game.spawns['Hatchery'].pos.x;
+    var HatcheryPosY = Game.spawns['Hatchery'].pos.y;
+    createExtension(HatcheryPosX, HatcheryPosY);
 
-        
-    }
-    spawningPool('droneUpgrader', 'upgrader', 1, [WORK,WORK,CARRY,MOVE]);
-    spawningPool('droneHarvester', 'harvester', 2, [WORK,CARRY,MOVE]);
+    
+}
+spawningPool('droneUpgrader', 'upgrader', 6, [WORK,WORK,CARRY,MOVE]);
+spawningPool('droneHarvester', 'harvester', 8, [WORK,CARRY,MOVE]);
 
-    unitsRole();
+unitsRole();
 
 
 }
@@ -123,5 +123,8 @@ Game.spawns['Hatchery'].room.createConstructionSite( 20, 22, STRUCTURE_EXTENSION
 Game.spawns['Hatchery'].room.controller.activateSafeMode();
 
 console.log(Game.getObjectById('aa8dcf0f30fd7dbbd40c9799').pos.x);
+
+Game.map.isRoomAvailable(room.name)
+console.log(Game.map.Memory.rooms[room.name]);
 
 */
