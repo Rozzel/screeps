@@ -22,13 +22,11 @@ module.exports.loop = function () {
 
     var controllerLevel = Game.rooms['sim'].controller.level;
 
-    spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
-    spawningPool('droneBuilder', 'builder', 1, [WORK,CARRY,MOVE]);
-
     if (controllerLevel == 2) {
-        spawningPool('droneUpgrader', 'upgrader', 1, [WORK,WORK,CARRY,MOVE]);
+        spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
+        spawningPool('droneBuilder', 'builder', 1, [WORK,CARRY,MOVE]);
     }
-
+    spawningPool('droneUpgrader', 'upgrader', 1, [WORK,WORK,CARRY,MOVE]);
     spawningPool('droneHarvester', 'harvester', 2, [WORK,CARRY,MOVE]);
 
     unitsRole();
