@@ -24,7 +24,7 @@ module.exports.loop = function () {
 
     if (controllerLevel == 2) {
         spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
-        spawningPool('droneBuilder', 'builder', 1, [WORK,CARRY,MOVE]);
+        spawningPool('droneBuilder', 'builder', 1, [WORK,WORK,CARRY,MOVE]);
     }
     spawningPool('droneUpgrader', 'upgrader', 1, [WORK,WORK,CARRY,MOVE]);
     spawningPool('droneHarvester', 'harvester', 2, [WORK,CARRY,MOVE]);
@@ -98,16 +98,17 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
 }
 
 
+
 /*
 
 console.log(Game.getObjectById('3c7c82645895864c16368215').level
 console.log(Game.rooms['sim'].controller.level); 
 
-Game.spawns['Hatchery'].room.createConstructionSite( 23, 22, STRUCTURE_TOWER );
+Game.spawns['Hatchery'].room.createConstructionSite( 20, 22, STRUCTURE_EXTENSION );
 
 Game.spawns['Hatchery'].room.controller.activateSafeMode();
 
 
-
+console.log(Room.getPositionAt.spawns['Hatchery']);
 
 */
