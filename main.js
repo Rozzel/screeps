@@ -19,8 +19,7 @@ module.exports.loop = function () {
     CLAIM	        600	
     TOUGH	        10
 */
-
-    var controllerLevel = Game.rooms.sim.controller.level;
+    var controllerLevel = Game.rooms['W36N43'].controller.level;
 
     if (controllerLevel == 2) {
         spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
