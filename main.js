@@ -24,7 +24,7 @@ module.exports.loop = function () {
 
     if (controllerLevel == 2) {
         spawningPool('droneHarvesterBig', 'harvester', 1, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
-        spawningPool('droneBuilder', 'builder', 1, [WORK,WORK,CARRY,MOVE]);
+        spawningPool('droneBuilder', 'builder', 2, [WORK,WORK,CARRY,MOVE]);
         
 
         var HatcheryPosX = Game.spawns['Hatchery'].pos.x;
