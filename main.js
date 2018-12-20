@@ -27,18 +27,10 @@ module.exports.loop = function () {
         spawningPool('droneBuilder', 'builder', 1, [WORK,WORK,CARRY,MOVE]);
         
 
-        
-        createExtension();
-        var createExtension = function () {
-            var HatcheryPosX = Game.spawns['Hatchery'].pos.x;
-            var HatcheryPosY = Game.spawns['Hatchery'].pos.y;
+        var HatcheryPosX = Game.spawns['Hatchery'].pos.x;
+        var HatcheryPosY = Game.spawns['Hatchery'].pos.y;
+        createExtension(HatcheryPosX, HatcheryPosY);
 
-            Game.spawns['Hatchery'].room.createConstructionSite( HatcheryPosX - 2, HatcheryPosY, STRUCTURE_EXTENSION );
-            Game.spawns['Hatchery'].room.createConstructionSite( HatcheryPosX + 2, HatcheryPosY, STRUCTURE_EXTENSION );
-            Game.spawns['Hatchery'].room.createConstructionSite( HatcheryPosX, HatcheryPosY - 2, STRUCTURE_EXTENSION );
-            Game.spawns['Hatchery'].room.createConstructionSite( HatcheryPosX - 1, HatcheryPosY + 2, STRUCTURE_EXTENSION );
-            Game.spawns['Hatchery'].room.createConstructionSite( HatcheryPosX + 1, HatcheryPosY + 2, STRUCTURE_EXTENSION );
-        }
         
     }
     spawningPool('droneUpgrader', 'upgrader', 1, [WORK,WORK,CARRY,MOVE]);
@@ -47,6 +39,14 @@ module.exports.loop = function () {
     unitsRole();
 
 
+}
+
+var createExtension = function (x, y) {
+    Game.spawns['Hatchery'].room.createConstructionSite( x - 2, y,      STRUCTURE_EXTENSION );
+    Game.spawns['Hatchery'].room.createConstructionSite( x + 2, y,      STRUCTURE_EXTENSION );
+    Game.spawns['Hatchery'].room.createConstructionSite( x    , y - 2,  STRUCTURE_EXTENSION );
+    Game.spawns['Hatchery'].room.createConstructionSite( x - 1, y + 2,  STRUCTURE_EXTENSION );
+    Game.spawns['Hatchery'].room.createConstructionSite( x + 1, y + 2,  STRUCTURE_EXTENSION );
 }
 
 var sporeCrawler = function () {
