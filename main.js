@@ -8,22 +8,11 @@ module.exports.loop = function () {
 
     sporeCrawler();
 
-/*
-    Body part       Build cost
-    MOVE	        50
-    WORK	        100	
-    CARRY	        50
-    ATTACK	        80
-    RANGED_ATTACK	150	
-    HEAL            250	
-    CLAIM	        600	
-    TOUGH	        10
-*/
 var controllerLevel = Game.rooms['W36N43'].controller.level;
 
 if (controllerLevel == 2) {
     spawningPool('droneHarvesterBig', 'harvester', 2, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
-    spawningPool('droneBuilder', 'builder', 4, [WORK,WORK,CARRY,MOVE]);
+    spawningPool('droneBuilder', 'builder', 0, [WORK,WORK,CARRY,MOVE]);
     
 
     var HatcheryPosX = Game.spawns['Hatchery'].pos.x;
