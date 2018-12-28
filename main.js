@@ -97,22 +97,3 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
     }
 
 }
-
-
-
-/*
-
-console.log(Game.getObjectById('3c7c82645895864c16368215').level
-console.log(Game.rooms['sim'].controller.level); 
-
-Game.spawns['Hatchery'].room.createConstructionSite( 20, 22, STRUCTURE_EXTENSION );
-
-/*
-console.log(Game.getObjectById('3c7c82645895864c16368215').level
-console.log(Game.rooms['sim'].controller.level); 
-Game.spawns['Hatchery'].room.createConstructionSite( 20, 22, STRUCTURE_EXTENSION );
-Game.spawns['Hatchery'].room.controller.activateSafeMode();
-console.log(Game.getObjectById('aa8dcf0f30fd7dbbd40c9799').pos.x);
-Game.map.isRoomAvailable(room.name)
-console.log(Game.map.Memory.rooms[room.name]);
-*/
