@@ -8,7 +8,7 @@ module.exports.loop = function () {
 
     sporeCrawler();
 
-var controllerLevel = this.room.controller.level;
+var controllerLevel = Game.rooms['W36N43'].controller.level;
 
 if (controllerLevel > 1) {
     spawningPool('droneHarvesterBig', 'harvester', 6, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
