@@ -13,7 +13,7 @@ var controllerLevel = Game.rooms['W36N43'].controller.level;
 if (controllerLevel > 1) {
     spawningPool('droneHarvesterBig', 'harvester', 6, [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE]);
     spawningPool('droneUpgraderBig', 'upgrader', 6, [WORK,WORK,CARRY,MOVE,MOVE,MOVE]);
-    spawningPool('droneBuilder', 'builder', 0, [WORK,WORK,CARRY,MOVE]);
+    spawningPool('droneBuilder', 'builder', 3, [WORK,WORK,CARRY,MOVE]);
 
     var HatcheryPosX = Game.spawns['Hatchery'].pos.x;
     var HatcheryPosY = Game.spawns['Hatchery'].pos.y;
