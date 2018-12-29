@@ -36,7 +36,7 @@ var createExtension = function (x, y) {
 }
 
 var sporeCrawler = function () {
-    var tower = Game.getObjectById('d8a55e4264e6dd1431a5dac9');
+    var tower = Game.getObjectById('5c264590bffc212cf45a352a');
     if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
