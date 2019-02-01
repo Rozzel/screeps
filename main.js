@@ -11,16 +11,17 @@ module.exports.loop = function () {
 var controllerLevel = Game.rooms['W36N43'].controller.level;
 
 if (controllerLevel > 1) {
-    spawningPool('droneUpgraderBig', 'upgrader', 4, [WORK,WORK,CARRY,MOVE,MOVE,MOVE]);
-    spawningPool('droneHarvesterBig', 'harvester', 8, [WORK,WORK,MOVE,MOVE,CARRY,MOVE,MOVE]);
-    spawningPool('droneBuilder', 'builder', 8, [WORK,WORK,CARRY,MOVE]);
+    spawningPool('droneUpgraderBig', 'upgrader', 0, [WORK,WORK,CARRY,MOVE,MOVE,MOVE]);
+    spawningPool('droneHarvesterBig', 'harvester', 0, [WORK,WORK,MOVE,MOVE,CARRY,MOVE,MOVE]);
+    spawningPool('droneBuilderBig', 'builder', 1, [WORK,WORK,CARRY,MOVE]);
 
     var HatcheryPosX = Game.spawns['Hatchery'].pos.x;
     var HatcheryPosY = Game.spawns['Hatchery'].pos.y;
     createExtension(HatcheryPosX, HatcheryPosY);
 }
-spawningPool('droneUpgrader', 'upgrader', 4, [WORK,WORK,CARRY,MOVE]);
-spawningPool('droneHarvester', 'harvester', 3, [WORK,CARRY,MOVE]);
+spawningPool('droneUpgrader', 'upgrader', 1, [WORK,WORK,CARRY,MOVE]);
+spawningPool('droneHarvester', 'harvester', 10, [WORK,CARRY,MOVE]);
+spawningPool('droneBuilder', 'builder', 3, [WORK,CARRY,MOVE]);
 
 unitsRole();
 
