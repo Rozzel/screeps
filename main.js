@@ -2,12 +2,13 @@ var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
 var roleUpgrader = require('role.upgrader');
 var spawningPool = require('spawning');
+var sporeCrawlerTower = require('towers');
 
 module.exports.loop = function () { 
 
-    deleteCreepsMemory();
+deleteCreepsMemory();
 
-    sporeCrawler();
+sporeCrawlerTower();
 
 spawningPool('droneUpgraderBig', 'upgrader', 0, [WORK,WORK,CARRY,MOVE,MOVE,MOVE]);
 spawningPool('droneBuilderBig', 'builder', 1, [WORK,WORK,CARRY,MOVE]);
@@ -21,22 +22,7 @@ unitsRole();
 
 }
 
-var sporeCrawler = function () {
-    var tower = Game.getObjectById('5c264590bffc212cf45a352a');
-    if(tower) {
-        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax
-        });
-        if(closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
-        }
 
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
-            tower.attack(closestHostile);
-        }
-    }
-}
 
 
 var deleteCreepsMemory = function () {

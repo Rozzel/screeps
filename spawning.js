@@ -16,6 +16,6 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
             {align: 'left', opacity: 0.8});
     }
 
-}
+};
 
 module.exports = spawningPool;
