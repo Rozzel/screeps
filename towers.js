@@ -1,7 +1,7 @@
-var sporeCrawlerTower = function () {
-    var tower_1 = Game.getObjectById('5c55df5e6f956a230b9ebfe8');
+var sporeCrawlerTower = function (towerId) {
+    let tower = Game.getObjectById(towerId);
 
-    var towerFind = function (tower) {
+    let towerFind = function (tower) {
         let closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax});
         let closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
@@ -13,7 +13,6 @@ var sporeCrawlerTower = function () {
         }
     }
 
-    towerFind(tower_1);
 };
 
 module.exports = sporeCrawlerTower;
