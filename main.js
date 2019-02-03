@@ -6,8 +6,6 @@ var sporeCrawlerTower = require('towers');
 
 module.exports.loop = function () { 
 
-
-
 sporeCrawlerTower();
 
 spawningPool('droneUpgraderBig', 'upgrader', 0, [WORK,WORK,CARRY,MOVE,MOVE,MOVE]);
@@ -21,9 +19,6 @@ unitsRole();
 
 
 }
-
-
-
 
 
 
