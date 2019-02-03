@@ -16,6 +16,15 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
             {align: 'left', opacity: 0.8});
     }
 
+    var deleteCreepsMemory = function () {
+        for(var name in Memory.creeps) {
+            if(!Game.creeps[name]) {
+                delete Memory.creeps[name];
+            }
+        }
+    }
+    deleteCreepsMemory();
+
 };
 
 module.exports = spawningPool;

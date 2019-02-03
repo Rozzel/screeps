@@ -6,7 +6,7 @@ var sporeCrawlerTower = require('towers');
 
 module.exports.loop = function () { 
 
-deleteCreepsMemory();
+
 
 sporeCrawlerTower();
 
@@ -25,13 +25,6 @@ unitsRole();
 
 
 
-var deleteCreepsMemory = function () {
-    for(var name in Memory.creeps) {
-        if(!Game.creeps[name]) {
-            delete Memory.creeps[name];
-        }
-    }
-}
 
 
 var unitsRole = function () {
