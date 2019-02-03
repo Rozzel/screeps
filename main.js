@@ -19,7 +19,6 @@ spawningPool('droneBuilder', 'builder', 4, [WORK,CARRY,MOVE]);
 
 unitsRole();
 
-towerFind(tower_1);
 
 }
 

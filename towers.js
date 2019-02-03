@@ -12,6 +12,8 @@ var sporeCrawlerTower = function () {
             tower.repair(closestDamagedStructure);
         }
     }
+
+    towerFind(tower_1);
 };
 
 module.exports = sporeCrawlerTower;
