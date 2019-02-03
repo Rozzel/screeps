@@ -1,10 +1,10 @@
-var roleHarvester = require('role.harvester');
-var roleBuilder = require('role.builder');
-var roleUpgrader = require('role.upgrader');
-var spawningPool = require('spawning');
-var sporeCrawlerTower = require('towers');
+import { run } from 'role.harvester';
+import { run as _run } from 'role.builder';
+import { run as __run } from 'role.upgrader';
+import spawningPool from 'spawning';
+import sporeCrawlerTower from 'towers';
 
-module.exports.loop = function () { 
+export function loop () { 
 
 
 
@@ -31,13 +31,13 @@ var unitsRole = function () {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
+            run(creep);
         }
         if(creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
+            _run(creep);
         }
         if(creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);
+            __run(creep);
         }
     }
 }
