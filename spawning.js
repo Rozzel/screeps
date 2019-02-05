@@ -40,7 +40,6 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
             }
         }
     }
-    unitsRole();
 
 };
 
