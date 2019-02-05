@@ -8,12 +8,9 @@ module.exports.loop = function () {
 
 sporeCrawlerTower();
 
-spawningPool('droneUpgraderBig', 'upgrader', 0, [WORK,WORK,CARRY,MOVE,MOVE,MOVE]);
-spawningPool('droneBuilderBig', 'builder', 0, [WORK,WORK,CARRY,MOVE]);
-spawningPool('droneHarvesterBig', 'harvester', 0, [WORK,MOVE,CARRY,CARRY]);
-spawningPool('droneUpgrader', 'upgrader', 1, [WORK,WORK,CARRY,MOVE]); // 100 + 100 + 50 + 50 = 300
-spawningPool('droneHarvester', 'harvester', 8, [WORK,CARRY,MOVE]); // 100 + 50 + 50 = 200
-spawningPool('droneBuilder', 'builder', 4, [WORK,CARRY,MOVE]); // 100 + 50 + 50 = 200
+spawningPool('droneUpgrader', 'upgrader', 1, [WORK,WORK,CARRY,CARRY,MOVE]); // 100+100+50+50+50=350
+spawningPool('droneHarvester', 'harvester', 8, [CARRY,WORK,CARRY,MOVE]); // 50+100+50+50=200
+spawningPool('droneBuilder', 'builder', 4, [WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE]); // 100+50+50+50+50+50+50=400
 
 unitsRole();
 
