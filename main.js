@@ -31,4 +31,3 @@ var unitsRole = function () {
         }
     }
 }
-
