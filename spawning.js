@@ -1,21 +1,21 @@
-var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
+var spawningPool = function (spawnName, droneName, droneRole, maxAmount, droneBody) {
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == droneRole);
 
     if (harvesters.length < maxAmount) {
         var newName = droneName + '-' + Game.time;
-        Game.spawns['Hatchery'].spawnCreep(droneBody, newName, {
+        Game.spawns[spawnName].spawnCreep(droneBody, newName, {
             memory: {
                 role: droneRole
             }
         });
     }
 
-    if (Game.spawns['Hatchery'].spawning) {
-        var spawningCreep = Game.creeps[Game.spawns['Hatchery'].spawning.name];
-        Game.spawns['Hatchery'].room.visual.text(
+    if (Game.spawns[spawnName].spawning) {
+        var spawningCreep = Game.creeps[Game.spawns[spawnName].spawning.name];
+        Game.spawns[spawnName].room.visual.text(
             spawningCreep.memory.role,
-            Game.spawns['Hatchery'].pos.x + 1,
-            Game.spawns['Hatchery'].pos.y, {
+            Game.spawns[spawnName].pos.x + 1,
+            Game.spawns[spawnName].pos.y, {
                 align: 'left',
                 opacity: 0.8
             });
