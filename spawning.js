@@ -26,7 +26,7 @@ var spawningPool = function (droneName, droneRole, maxAmount, droneBody) {
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
         }
-    }
+    };
 
 };
 
