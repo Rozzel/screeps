@@ -1,5 +1,5 @@
-var sporeCrawlerTower = function (towerId) {
-    var tower = Game.getObjectById(towerId);
+let sporeCrawlerTower = function (towerId) {
+    let tower = Game.getObjectById(towerId);
 
         let closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax});
