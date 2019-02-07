@@ -6,7 +6,8 @@ var sporeCrawlerTower = require('towers');
 
 module.exports.loop = function () { 
 
-sporeCrawlerTower();
+sporeCrawlerTower('5c55df5e6f956a230b9ebfe8');
+sporeCrawlerTower('5c57064bb9349812e0eca6d0');
 
 spawningPool('Hatchery', 'droneUpgrader', 'upgrader', 1, [WORK,CARRY,MOVE]);
 spawningPool('Hatchery', 'droneHarvester', 'harvester', 8, [MOVE,WORK,CARRY,MOVE]);
