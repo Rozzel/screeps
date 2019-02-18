@@ -1,4 +1,4 @@
-let sporeCrawlerTower = function (towerId) {
+let sporeCrawlerTower = (towerId) => {
     let tower = Game.getObjectById(towerId);
 
         let closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {

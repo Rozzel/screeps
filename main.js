@@ -4,7 +4,7 @@ let roleHarvester = require('_role.harvester'),
     spawningPool = require('_spawning'),
     sporeCrawlerTower = require('_towers');
 
-module.exports.loop = function () { 
+module.exports.loop = () => { 
 
 sporeCrawlerTower('5c55df5e6f956a230b9ebfe8');
 sporeCrawlerTower('5c57064bb9349812e0eca6d0');
@@ -18,7 +18,7 @@ unitsRole();
 
 }
 
-let unitsRole = function () {
+let unitsRole = () => {
     for(let name in Game.creeps) {
         let creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {

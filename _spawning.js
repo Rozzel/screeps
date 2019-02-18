@@ -1,4 +1,4 @@
-let spawningPool = function (spawnName, droneName, droneRole, maxAmount, droneBody) {
+let spawningPool = (spawnName, droneName, droneRole, maxAmount, droneBody) => {
     let harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == droneRole);
 
     if (harvesters.length < maxAmount) {
