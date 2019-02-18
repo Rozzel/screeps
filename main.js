@@ -1,8 +1,8 @@
-let roleHarvester = require('_role.harvester');
-let roleBuilder = require('_role.builder');
-let roleUpgrader = require('_role.upgrader');
-let spawningPool = require('_spawning');
-let sporeCrawlerTower = require('_towers');
+let roleHarvester = require('_role.harvester'),
+    roleBuilder = require('_role.builder'),
+    roleUpgrader = require('_role.upgrader'),
+    spawningPool = require('_spawning'),
+    sporeCrawlerTower = require('_towers');
 
 module.exports.loop = function () { 
 
