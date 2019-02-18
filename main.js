@@ -1,17 +1,17 @@
-let roleHarvester = require('role.harvester');
-let roleBuilder = require('role.builder');
-let roleUpgrader = require('role.upgrader');
-let spawningPool = require('spawning');
-let sporeCrawlerTower = require('towers');
+let roleHarvester = require('_role.harvester');
+let roleBuilder = require('_role.builder');
+let roleUpgrader = require('_role.upgrader');
+let spawningPool = require('_spawning');
+let sporeCrawlerTower = require('_towers');
 
 module.exports.loop = function () { 
 
 sporeCrawlerTower('5c55df5e6f956a230b9ebfe8');
 sporeCrawlerTower('5c57064bb9349812e0eca6d0');
 
-spawningPool('Hatchery', 'droneUpgrader', 'upgrader', 1, [WORK,CARRY,MOVE]);
-spawningPool('Hatchery', 'droneHarvester', 'harvester', 8, [MOVE,WORK,CARRY,MOVE]);
-spawningPool('Hatchery', 'droneBuilder', 'builder', 3, [WORK,CARRY,CARRY,CARRY,MOVE]);
+spawningPool('Hatchery', 'droneUpgrader', 'upgrader', 3, [WORK,CARRY,CARRY,MOVE,MOVE,MOVE]);
+spawningPool('Hatchery', 'droneHarvester', 'harvester', 14, [MOVE,WORK,CARRY,MOVE]);
+spawningPool('Hatchery', 'droneBuilder', 'builder', 2, [WORK,CARRY,CARRY,MOVE]);
 
 unitsRole();
 
