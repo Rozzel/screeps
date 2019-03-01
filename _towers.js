@@ -1,4 +1,4 @@
-let sporeCrawlerTower = (towerId) => {
+let tower = (towerId) => {
     let tower = Game.getObjectById(towerId);
 
         let closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -12,4 +12,4 @@ let sporeCrawlerTower = (towerId) => {
         }
 };
 
-module.exports = sporeCrawlerTower;
+module.exports = tower;
