@@ -1,7 +1,7 @@
 const tower = require('_towers'),
       units = require('_units');
 
-module.exports.loop = () => { 
+module.exports.loop = function() { 
 
 tower('5c55df5e6f956a230b9ebfe8');
 tower('5c57064bb9349812e0eca6d0');
