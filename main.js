@@ -3,14 +3,14 @@ const   tower = require('_towers'),
 
 module.exports.loop = () => {
 
-    // tower('5c55df5e6f956a230b9ebfe8');
-    // tower('5c57064bb9349812e0eca6d0');
+    tower('5c55df5e6f956a230b9ebfe8');
+    tower('5c57064bb9349812e0eca6d0');
 
 
-    // units.spawning('Hatchery', 'droneUpgrader', 'upgrader', 5, [WORK, CARRY, CARRY, MOVE, MOVE, MOVE]);
+    units.spawning('Hatchery', 'droneUpgrader', 'upgrader', 5, [WORK, CARRY, CARRY, MOVE, MOVE, MOVE]);
     units.spawning('Hatchery', 'droneСarrier', 'сarrier', 1, [MOVE, CARRY,CARRY, MOVE, MOVE, MOVE]);
     units.spawning('Hatchery', 'droneHarvester', 'harvester', 3, [WORK,WORK,CARRY,CARRY,MOVE]);
-    // units.spawning('Hatchery', 'droneBuilder', 'builder', 0, [WORK,WORK,CARRY,CARRY,MOVE]);
+    units.spawning('Hatchery', 'droneBuilder', 'builder', 0, [WORK,WORK,CARRY,CARRY,MOVE]);
 
 
 
