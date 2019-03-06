@@ -32,7 +32,7 @@ let units = {
 
 	},
 
-	roleСarrier(creep) {
+	roleCarrier(creep) {
 
 		if (creep.carry.energy === 0) {
 			let target = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY);
