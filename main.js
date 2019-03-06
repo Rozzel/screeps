@@ -20,8 +20,8 @@ module.exports.loop = () => {
         if (creep.memory.role == 'harvester') {
             units.roleСarrier(creep);
         }
-        if (creep.memory.role == 'harvester') {
-            units.roleСarrier(creep);
+        if(creep.memory.role == 'harvester') {
+            units.roleHarvester(creep);
         }
         if (creep.memory.role == 'builder') {
             units.roleBuilder(creep);

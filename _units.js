@@ -63,7 +63,7 @@ let units = {
 
 
 
-	roleBuilder(creep) {
+	roleHarvester(creep) {
 
 		if (creep.memory.building && creep.carry.energy == 0) {
 			creep.memory.building = false;
@@ -71,7 +71,7 @@ let units = {
 		}
 		if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
 			creep.memory.building = true;
-			creep.say('build');
+			creep.say('drop resource');
 		}
 
 		if (creep.memory.building) {
