@@ -35,14 +35,29 @@ let units = {
 	roleCarrier(creep) {
 
 		if (creep.carry.energy !== creep.carryCapacity) {
+
 			let target = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
 			if (target) {
 				if (creep.pickup(target) == ERR_NOT_IN_RANGE) {
 					creep.moveTo(target, {
-					visualizePathStyle: {
-						stroke: '#ffaa00'
+						visualizePathStyle: {
+							stroke: '#ffaa00'
+						}
+					});
+				}
+			} else {
+				let target = creep.room.find(FIND_STRUCTURES, {
+					filter: {
+						structureType: STRUCTURE_CONTAINER
 					}
 				});
+
+				if (creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+					creep.moveTo(target[0], {
+						visualizePathStyle: {
+							stroke: '#ffaa00'
+						}
+					});
 				}
 			}
 		} else {
@@ -55,6 +70,10 @@ let units = {
 			});
 			if (targets.length > 0) {
 				if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+
+					for (let resourceType in creep.carry) {
+						creep.transfer(targets[0], resourceType);
+					}
 					creep.moveTo(targets[0], {
 						visualizePathStyle: {
 							stroke: '#ffffff'
@@ -65,19 +84,30 @@ let units = {
 		}
 	},
 
-
-
 	roleHarvester(creep) {
 
 		if (creep.carry.energy === creep.carryCapacity) {
-			for (let resourceType in creep.carry) {
-				creep.say('drop');
-				creep.drop(resourceType);
+			let target = creep.room.find(FIND_STRUCTURES, {
+				filter: {
+					structureType: STRUCTURE_CONTAINER
+				}
+			});
+			if (creep.transfer(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(target[0], {
+					visualizePathStyle: {
+						stroke: '#ffaa00'
+					}
+				});
+			} else {
+
+				for (let resourceType in creep.carry) {
+					creep.transfer(target[0], resourceType);
+				}
 			}
 		} else {
-			let sources = creep.room.find(FIND_SOURCES);
-			if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-				creep.moveTo(sources[0], {
+			let target = creep.room.find(FIND_SOURCES);
+			if (creep.harvest(target[0]) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(target[0], {
 					visualizePathStyle: {
 						stroke: '#ffaa00'
 					}
@@ -141,21 +171,24 @@ let units = {
 				});
 			}
 		} else {
-			let sources = creep.room.find(FIND_SOURCES);
-			if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-				creep.moveTo(sources[0], {
+
+			let target = creep.room.find(FIND_STRUCTURES, {
+				filter: {
+					structureType: STRUCTURE_CONTAINER
+				}
+			});
+			if (creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(target[0], {
 					visualizePathStyle: {
 						stroke: '#ffaa00'
 					}
 				});
 			}
+
 		}
 	},
 
 
-
-
 };
-
 
 module.exports = units;
