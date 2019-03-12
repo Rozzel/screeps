@@ -47,9 +47,7 @@ let units = {
 				}
 			} else {
 				let target = creep.room.find(FIND_STRUCTURES, {
-					filter: {
-						structureType: STRUCTURE_CONTAINER
-					}
+					filter: (i) => i.structureType == STRUCTURE_CONTAINER && i.store[RESOURCE_ENERGY] > 0
 				});
 
 				if (creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
@@ -173,9 +171,7 @@ let units = {
 		} else {
 
 			let target = creep.room.find(FIND_STRUCTURES, {
-				filter: {
-					structureType: STRUCTURE_CONTAINER
-				}
+				filter: (i) => i.structureType == STRUCTURE_CONTAINER && i.store[RESOURCE_ENERGY] > 0
 			});
 			if (creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(target[0], {
