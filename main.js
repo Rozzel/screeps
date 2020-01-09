@@ -3,8 +3,8 @@ const   tower = require('_towers'),
 
 module.exports.loop = () => {
    
-    tower('5c57064bb9349812e0eca6d0');
-    tower('5c55df5e6f956a230b9ebfe8');
+    //tower('5c57064bb9349812e0eca6d0');
+    //tower('5c55df5e6f956a230b9ebfe8');
 
 
 
