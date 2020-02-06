@@ -7,15 +7,17 @@ module.exports.loop = () => {
     //tower('5c55df5e6f956a230b9ebfe8');
 
 
+    //units.spawning
 
     // units.spawning('Hatchery', 'droneUpgrader', 'upgrader', 7, [WORK, CARRY, CARRY, MOVE, MOVE, MOVE]);
     // units.spawning('Hatchery', 'droneCarrier', 'carrier', 9, [MOVE, CARRY, MOVE, MOVE, MOVE]);
     // units.spawning('Hatchery', 'droneHarvester', 'harvester', 3, [WORK, WORK, WORK, CARRY, CARRY, MOVE]);
-    units.spawning('Hatchery', 'droneYoungHarvester', 'youngHarvester', 2, [WORK, CARRY, CARRY, MOVE]);
-    units.spawning('Hatchery', 'droneBuilder', 'builder', 1, [WORK, WORK, CARRY, MOVE]);
-    units.spawning('Hatchery', 'droneUpgrader', 'upgrader', 1, [WORK, CARRY, MOVE]);
-
     
+    units.spawning('Hatchery', 'droneBuilder', 'builder', 0, [WORK, WORK, CARRY, MOVE]);
+    units.spawning('Hatchery', 'droneUpgrader', 'upgrader', 2, [WORK, CARRY, MOVE]);
+    units.spawning('Hatchery', 'droneYoungHarvester', 'youngHarvester', 2, [WORK, CARRY, CARRY, MOVE]);
+
+    // units.spawning  end
 
 
     for (let name in Game.creeps) {
