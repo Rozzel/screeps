@@ -42,6 +42,12 @@ module.exports.loop = () => {
         if (creep.memory.role == 'youngHarvester') {
             units.roleYoungHarvester(creep);
         }
+        if (creep.memory.role == 'youngUpgrader') {
+            units.roleYoungHarvester(creep);
+        }
+        if (creep.memory.role == 'youngBuilder') {
+            units.roleYoungHarvester(creep);
+        }
     }
 
 

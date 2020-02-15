@@ -161,9 +161,11 @@ let units = {
 				}
 			}
 		} else {
-			let sources = creep.room.find(FIND_SOURCES);
-			if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-				creep.moveTo(sources[0], {
+			let target = creep.room.find(FIND_STRUCTURES, {
+				filter: (i) => i.structureType == STRUCTURE_CONTAINER && i.store[RESOURCE_ENERGY] > 0
+			});
+			if (creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(target[0], {
 					visualizePathStyle: {
 						stroke: '#ffaa00'
 					}
