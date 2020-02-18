@@ -59,7 +59,6 @@ let units = {
 						}
 					});
 				}
-				creep.say('carry');
 			}
 		} else {
 			let targets = creep.room.find(FIND_STRUCTURES, {
