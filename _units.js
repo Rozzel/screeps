@@ -229,11 +229,11 @@ let units = {
 		} else {
 
 			let target = creep.room.find(FIND_STRUCTURES, {
-				filter: (i) => 	i.structureType == STRUCTURE_STORAGE && i.store[RESOURCE_ENERGY] > 0 ||
-								i.structureType == STRUCTURE_CONTAINER && i.store[RESOURCE_ENERGY] > 0 
+				filter: (i) => 	i.structureType == STRUCTURE_CONTAINER && i.store[RESOURCE_ENERGY] > 0 ||
+								i.structureType == STRUCTURE_STORAGE && i.store[RESOURCE_ENERGY] > 0 
 			});
-			if (creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-				creep.moveTo(target[0], {
+			if (creep.withdraw(target[1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+				creep.moveTo(target[1], {
 					visualizePathStyle: {
 						stroke: '#ffaa00'
 					}
