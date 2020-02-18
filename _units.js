@@ -45,6 +45,7 @@ let units = {
 						}
 					});
 				}
+				creep.say('drop');
 			} else {
 				let target = creep.room.find(FIND_STRUCTURES, {
 					filter: (i) => i.structureType == STRUCTURE_CONTAINER && i.store[RESOURCE_ENERGY] > 0 ||
@@ -58,6 +59,7 @@ let units = {
 						}
 					});
 				}
+				creep.say('carry');
 			}
 		} else {
 			let targets = creep.room.find(FIND_STRUCTURES, {
