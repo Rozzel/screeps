@@ -19,7 +19,7 @@ module.exports.loop = () => {
     units.spawning('Hatchery', 'droneYoungHarvester', 'youngHarvester', 0, [WORK, CARRY, CARRY, MOVE]);
 
     units.spawning('Hatchery', 'droneBuilder', 'builder', 0, [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE]);
-    units.spawning('Hatchery', 'droneUpgrader', 'upgrader', 3, [WORK, CARRY, MOVE]);
+    units.spawning('Hatchery', 'droneUpgrader', 'upgrader', 4, [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE]);
     units.spawning('Hatchery', 'droneCarrier', 'carrier', 3, [MOVE, CARRY, MOVE]);
     units.spawning('Hatchery', 'droneHarvester', 'harvester', 2, [WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE]);
 
