@@ -62,8 +62,9 @@ let units = {
 			let targets = creep.room.find(FIND_STRUCTURES, {
 				filter: (structure) => {
 					return (structure.structureType == STRUCTURE_EXTENSION ||
-						structure.structureType == STRUCTURE_SPAWN ||
-						structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
+							structure.structureType == STRUCTURE_SPAWN ||
+							structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity ||
+							structure.structureType == STRUCTURE_STORAGE;
 				}
 			});
 			if (targets.length > 0) {
