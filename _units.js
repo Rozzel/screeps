@@ -144,7 +144,7 @@ let units = {
 
 		if (creep.memory.building && creep.carry.energy == 0) {
 			creep.memory.building = false;
-			creep.say('harvest');
+			creep.say('take energy');
 		}
 		if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
 			creep.memory.building = true;
@@ -181,11 +181,11 @@ let units = {
 
 		if(creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.building = false;
-            creep.say('🔄 harvest');
+            creep.say('harvest');
 	    }
 	    if(!creep.memory.building && creep.store.getFreeCapacity() == 0) {
 	        creep.memory.building = true;
-	        creep.say('🚧 build');
+	        creep.say('build');
 	    }
 
 	    if(creep.memory.building) {
@@ -209,7 +209,7 @@ let units = {
 
 		if (creep.memory.upgrading && creep.carry.energy == 0) {
 			creep.memory.upgrading = false;
-			creep.say('harvest');
+			creep.say('take energy');
 		}
 		if (!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
 			creep.memory.upgrading = true;
@@ -245,11 +245,11 @@ let units = {
 
 		if(creep.memory.upgrading && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.upgrading = false;
-            creep.say('🔄 harvest');
+            creep.say('harvest');
 	    }
 	    if(!creep.memory.upgrading && creep.store.getFreeCapacity() == 0) {
 	        creep.memory.upgrading = true;
-	        creep.say('⚡ upgrade');
+	        creep.say('upgrade');
 	    }
 
 	    if(creep.memory.upgrading) {
