@@ -7,7 +7,7 @@ let tower = (towerId) => {
     
         if (closestHostile) {
             tower.attack(closestHostile);
-        } else {
+        } else if (closestDamagedStructure) {
             tower.repair(closestDamagedStructure);
         }
 };
