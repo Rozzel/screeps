@@ -1,9 +1,9 @@
 let units = {
-
+	
 	spawning(spawnName, droneName, droneRole, maxAmount, droneBody) {
-		let harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == droneRole);
+		let creeps = _.filter(Game.creeps, (creep) => creep.memory.role == droneRole);
 
-		if (harvesters.length < maxAmount) {
+		if (creeps.length < maxAmount) {
 			let newName = `${droneName}-${Game.time}`;
 			Game.spawns[spawnName].spawnCreep(droneBody, newName, {
 				memory: {
