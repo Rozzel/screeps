@@ -65,10 +65,16 @@ let units = {
 				filter: (structure) => {
 					return (structure.structureType == STRUCTURE_EXTENSION ||
 							structure.structureType == STRUCTURE_SPAWN ||
-							structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity ||
-							structure.structureType == STRUCTURE_STORAGE;
+							structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
 				}
 			});
+
+			let targetsStorage = creep.room.find(FIND_STRUCTURES, {
+				filter: (structure) => {
+					return structure.structureType == STRUCTURE_STORAGE;
+			    }
+			});
+
 			if (targets.length > 0) {
 				if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 
@@ -76,6 +82,18 @@ let units = {
 						creep.transfer(targets[0], resourceType);
 					}
 					creep.moveTo(targets[0], {
+						visualizePathStyle: {
+							stroke: '#ffffff'
+						}
+					});
+				}
+			} else {
+			    if (creep.transfer(targetsStorage[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+
+					for (let resourceType in creep.carry) {
+						creep.transfer(targetsStorage[0], resourceType);
+					}
+					creep.moveTo(targetsStorage[0], {
 						visualizePathStyle: {
 							stroke: '#ffffff'
 						}
