@@ -1,6 +1,11 @@
 Creeps
 ===
 
+- [Creeps](#creeps)
+  - [Spawning costs](#spawning-costs)
+  - [Creeps skills](#creeps-skills)
+
+
 Spawning costs
 ---
 >    BODYPART_COST: {
