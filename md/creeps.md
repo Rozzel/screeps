@@ -23,6 +23,7 @@ Creeps_skills
 + ATTACK – ability of short-range attack.
 + RANGED_ATTACK – ability of ranged attack.
 + HEAL – ability to heal others.
-+ CLAIM - ability to claim territory control.
 + TOUGH – "empty" part with the sole purpose of defense.
++ CLAIM - ability to claim territory control.
+
 
