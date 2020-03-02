@@ -4,11 +4,10 @@ Creeps
   - [Creeps skills](#creeps-skills)
   - [Life time](#life-time)
 - [Costs](#costs)
-  - [BODYPART COST](#bodypart-cost)
-  - [CONSTRUCTION COST](#construction-cost)
+  - [Bodypart cost](#bodypart-cost)
+  - [Construction cost](#construction-cost)
 
-Creeps skills
----
+## Creeps skills
 
 + WORK – ability to harvest energy, construct and repair structures, upgrade controllers.
 + MOVE – ability to move.
@@ -25,10 +24,11 @@ Creeps skills
 
 Costs
 ===
+
 [Constants](https://docs.screeps.com/api/#Constants)
 
 
-## BODYPART COST
+## Bodypart cost
 + "move": 50,
 + "work": 100,
 + "attack": 80,
@@ -39,8 +39,7 @@ Costs
 + "claim": 600,
 
 
-
-## CONSTRUCTION COST
+## Construction cost
 + "spawn": 15000,
 + "extension": 3000,
 + "road": 300,
