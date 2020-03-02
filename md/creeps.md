@@ -1,7 +1,7 @@
 Creeps
 ===
 
-Spawning_costs
+Spawning costs
 ---
 >    BODYPART_COST: {
 >        "move": 50,
@@ -14,7 +14,7 @@ Spawning_costs
 >        "claim": 600
 >    }
 
-Creeps_skills
+Creeps skills
 ---
 
 + WORK – ability to harvest energy, construct and repair structures, upgrade controllers.
