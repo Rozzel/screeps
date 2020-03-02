@@ -1,7 +1,9 @@
-![screeps](https://screeps.com/images/logotype-animated.svg "Screeps")
+
+![Screeps](https://screeps.com/images/logotype-animated.svg "Screeps")
+Screeps
 ===
 
-- [!screeps](#screeps)
+- [Screeps](#screeps)
   - [Creeps skills](#creeps-skills)
   - [Life time](#life-time)
 - [Costs](#costs)
