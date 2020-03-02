@@ -25,5 +25,3 @@ Creeps skills
 + HEAL – ability to heal others.
 + TOUGH – "empty" part with the sole purpose of defense.
 + CLAIM - ability to claim territory control.
-
-
