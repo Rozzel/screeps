@@ -1,5 +1,5 @@
 Creeps
 ===
 
-- [Spawning costs](/creeps.md)
-- [Creeps Skills](/creeps.md)
+- [Spawning costs](creeps.md)
+- [Creeps Skills](creeps.md)
