@@ -71,7 +71,7 @@ let units = {
 
 			let targetsStorage = creep.room.find(FIND_STRUCTURES, {
 				filter: (structure) => {
-					return structure.structureType == STRUCTURE_STORAGE;
+					return structure.structureType == STRUCTURE_STORAGE && structure.store[RESOURCE_ENERGY] !== 1000000;
 			    }
 			});
 
