@@ -5,6 +5,7 @@ module.exports.loop = () => {
    
     tower('5e46a4e3513adee6a864e520');
     tower('5e4e7dba388a320a21a1a858');
+    tower('5e7469bca025226544130738');
 
 
 
