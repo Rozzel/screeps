@@ -9,6 +9,8 @@ Screeps
 - [Costs](#costs)
   - [Bodypart cost](#bodypart-cost)
   - [Construction cost](#construction-cost)
+- [Примеры када](#%d0%9f%d1%80%d0%b8%d0%bc%d0%b5%d1%80%d1%8b-%d0%ba%d0%b0%d0%b4%d0%b0)
+  - [Найти имя комнаты](#%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d0%b8%d0%bc%d1%8f-%d0%ba%d0%be%d0%bc%d0%bd%d0%b0%d1%82%d1%8b)
 
 ## Creeps skills
 
@@ -59,3 +61,17 @@ Costs
 + "container": 5000,
 + "nuker": 100000,
 + "factory": 100000,
+
+# Примеры када
+
+## Найти имя комнаты
+>for(let name in Game.rooms) {
+>        
+>        //currentRoom is now the instance of the roomobject
+>        var currentRoom = Game.rooms[name];
+>        var currentRoomName = currentRoom.name;
+>        //Example:
+>        //console.log("--- > currentRoom energy available: " + currentRoom.energyAvailable );
+>        
+>        console.log("currentRoomName " + currentRoomName);
+>}
