@@ -12,7 +12,7 @@
 | `concepts/rcl` | concepts/rcl.md | planned |
 | `strategies/energy-economy` | strategies/energy-economy.md | planned |
 | `strategies/defense-towers` | strategies/defense-towers.md | planned |
-| `strategies/early-game` | strategies/early-game.md | planned |
+| `strategies/early-game` | [strategies/early-game.md](strategies/early-game.md) | готово |
 | `strategies/remote-mining` | strategies/remote-mining.md | planned |
 | `strategies/logistics-links` | strategies/logistics-links.md | planned |
 | `architecture/kernel` | architecture/kernel.md | planned |

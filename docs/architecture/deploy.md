@@ -1,12 +1,12 @@
 # Деплой кода на сервер Screeps
 
 - **ID:** `architecture/deploy`
-- **Источники:** [External Commit](https://docs.screeps.com/commit.html), [Auth Tokens](https://docs.screeps.com/auth-tokens.html)
+- **Источники:** [External Commit](https://docs.screeps.com/commit.html)
 - **Этап:** 0–1
 
 ## Как исполняется код
 
-Предпочтительный путь (как раньше): **GitHub Integration** на screeps.com.
+Путь деплоя: **GitHub Integration** на screeps.com (без token / без Actions).
 
 ```text
 make build → bot/main.js → git push origin master → GitHub Sync (Folder: bot) → loop()
@@ -14,14 +14,6 @@ make build → bot/main.js → git push origin master → GitHub Sync (Folder: b
 
 Настройка: [GitHub Integration](https://screeps.com/a/#!/account/github) → Sync from `screeps` → Folder = `bot` → Sync.  
 В `bot/` лежит только собранный `main.js`, чтобы Screeps не тянул Makefile/docs как модули.
-
-Дополнительно: API push через token (`make push-main`) и GitHub Actions — см. ниже.
-## Настройка
-
-1. Token: https://screeps.com/a/#!/account/auth-mod  
-2. Secret репозитория `SCREEPS_TOKEN` = token  
-3. Опционально `SCREEPS_BRANCH` = имя ветки в игре (по умолчанию `main`)  
-4. В клиенте: Scripts → активная ветка = та же, что в `branch`
 
 ## Комната
 

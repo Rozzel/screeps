@@ -70,50 +70,37 @@ class DefenseManager {
     }
 }
 
-/** Новая колония: один Spawn1, тела под RCL1 (300 energy). */
-const SPAWN_SPECS = [
-    {
-        spawnName: "Spawn1",
-        droneName: "droneHarvester",
-        droneRole: "youngHarvester",
-        maxAmount: 2,
-        droneBody: [WORK, CARRY, MOVE]
-    },
-    {
-        spawnName: "Spawn1",
-        droneName: "droneUpgrader",
-        droneRole: "youngUpgrader",
-        maxAmount: 1,
-        droneBody: [WORK, CARRY, MOVE]
-    },
-    {
-        spawnName: "Spawn1",
-        droneName: "droneBuilder",
-        droneRole: "youngBuilder",
-        maxAmount: 1,
-        droneBody: [WORK, CARRY, MOVE]
+/** Этап 0 колонии: RCL1, один spawn, без контейнеров. */
+function getBootstrapQuotas(room) {
+    const sites = room.find(FIND_MY_CONSTRUCTION_SITES).length;
+    const quotas = [
+        {
+            role: "bootstrap",
+            maxAmount: 3,
+            body: [WORK, CARRY, MOVE]
+        }
+    ];
+    if (sites > 0) {
+        quotas.push({
+            role: "youngBuilder",
+            maxAmount: 1,
+            body: [WORK, CARRY, MOVE]
+        });
     }
-];
-class LegacySpawn {
+    return quotas;
+}
+
+class ColonySpawn {
     static run() {
-        for (const spec of SPAWN_SPECS) {
-            LegacySpawn.spawning(spec.spawnName, spec.droneName, spec.droneRole, spec.maxAmount, spec.droneBody);
+        for (const spawnName in Game.spawns) {
+            const spawn = Game.spawns[spawnName];
+            if (!spawn.my) {
+                continue;
+            }
+            ColonySpawn.runSpawn(spawn);
         }
     }
-    static spawning(spawnName, droneName, droneRole, maxAmount, droneBody) {
-        const spawn = Game.spawns[spawnName];
-        if (!spawn) {
-            return;
-        }
-        const creeps = _.filter(Game.creeps, (creep) => creep.memory.role === droneRole);
-        if (creeps.length < maxAmount) {
-            const newName = `${droneName}-${Game.time}`;
-            spawn.spawnCreep(droneBody, newName, {
-                memory: {
-                    role: droneRole
-                }
-            });
-        }
+    static runSpawn(spawn) {
         if (spawn.spawning) {
             const spawningCreep = Game.creeps[spawn.spawning.name];
             if (spawningCreep) {
@@ -122,7 +109,94 @@ class LegacySpawn {
                     opacity: 0.8
                 });
             }
+            return;
         }
+        const roomCreeps = spawn.room.find(FIND_MY_CREEPS);
+        const quotas = getBootstrapQuotas(spawn.room);
+        // Аварийный bootstrap: нет крипов — спавним первого любой ценой по энергии.
+        if (roomCreeps.length === 0) {
+            ColonySpawn.trySpawn(spawn, "bootstrap", "boot", [WORK, CARRY, MOVE]);
+            return;
+        }
+        for (const quota of quotas) {
+            const count = _.filter(roomCreeps, (creep) => creep.memory.role === quota.role).length;
+            if (count < quota.maxAmount) {
+                ColonySpawn.trySpawn(spawn, quota.role, quota.role, quota.body);
+                return;
+            }
+        }
+    }
+    static trySpawn(spawn, role, prefix, body) {
+        const name = `${prefix}-${Game.time}`;
+        const result = spawn.spawnCreep(body, name, {
+            memory: {
+                role
+            }
+        });
+        if (result === OK) {
+            console.log(`Spawn ${spawn.name}: ${role} (${name})`);
+        }
+        else if (result !== ERR_NOT_ENOUGH_ENERGY && result !== ERR_BUSY) {
+            console.log(`Spawn ${spawn.name} failed ${role}: ${result}`);
+        }
+    }
+}
+
+/**
+ * Универсальный рабочий RCL1:
+ * source → spawn/extensions → controller (если склад заполнен).
+ */
+class BootstrapRole {
+    run(creep) {
+        if (creep.store.getFreeCapacity() > 0) {
+            this.harvest(creep);
+            return;
+        }
+        if (this.deliverToSpawnEconomy(creep)) {
+            return;
+        }
+        this.upgrade(creep);
+    }
+    harvest(creep) {
+        var _a;
+        const source = (_a = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE)) !== null && _a !== void 0 ? _a : creep.pos.findClosestByPath(FIND_SOURCES);
+        if (!source) {
+            creep.say("no src");
+            return;
+        }
+        const result = creep.harvest(source);
+        if (result === ERR_NOT_IN_RANGE) {
+            creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" } });
+        }
+        creep.say("harvest");
+    }
+    deliverToSpawnEconomy(creep) {
+        const target = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+            filter: (structure) => {
+                return ((structure.structureType === STRUCTURE_SPAWN ||
+                    structure.structureType === STRUCTURE_EXTENSION) &&
+                    structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
+            }
+        });
+        if (!target) {
+            return false;
+        }
+        if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, { visualizePathStyle: { stroke: "#ffffff" } });
+        }
+        creep.say("fill");
+        return true;
+    }
+    upgrade(creep) {
+        const controller = creep.room.controller;
+        if (!controller || !controller.my) {
+            creep.say("idle");
+            return;
+        }
+        if (creep.upgradeController(controller) === ERR_NOT_IN_RANGE) {
+            creep.moveTo(controller, { visualizePathStyle: { stroke: "#00ff00" } });
+        }
+        creep.say("upgrade");
     }
 }
 
@@ -314,26 +388,38 @@ class UpgraderRole {
 
 class YoungHarvesterRole {
     run(creep) {
+        var _a, _b;
+        // На RCL1 youngHarvester = bootstrap (spawn полон → upgrade).
         if (creep.store.getFreeCapacity() > 0) {
-            const sources = creep.room.find(FIND_SOURCES);
-            if (creep.harvest(sources[0]) === ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], { visualizePathStyle: { stroke: "#ffaa00" } });
+            const source = (_a = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE)) !== null && _a !== void 0 ? _a : creep.pos.findClosestByPath(FIND_SOURCES);
+            if (!source) {
+                return;
+            }
+            if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" } });
             }
             creep.say("harvest");
+            return;
         }
-        else {
-            const targets = creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return ((structure.structureType === STRUCTURE_EXTENSION ||
-                        structure.structureType === STRUCTURE_SPAWN) &&
-                        structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
-                }
-            });
-            if (targets.length > 0) {
-                if (creep.transfer(targets[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], { visualizePathStyle: { stroke: "#ffffff" } });
-                }
+        const sink = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+            filter: (structure) => {
+                return ((structure.structureType === STRUCTURE_SPAWN ||
+                    structure.structureType === STRUCTURE_EXTENSION) &&
+                    structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
             }
+        });
+        if (sink) {
+            if (creep.transfer(sink, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(sink, { visualizePathStyle: { stroke: "#ffffff" } });
+            }
+            creep.say("fill");
+            return;
+        }
+        if ((_b = creep.room.controller) === null || _b === void 0 ? void 0 : _b.my) {
+            if (creep.upgradeController(creep.room.controller) === ERR_NOT_IN_RANGE) {
+                creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: "#00ff00" } });
+            }
+            creep.say("upgrade");
         }
     }
 }
@@ -392,6 +478,7 @@ class YoungUpgraderRole {
 }
 
 const roles = {
+    bootstrap: new BootstrapRole(),
     carrier: new CarrierRole(),
     harvester: new HarvesterRole(),
     builder: new BuilderRole(),
@@ -408,6 +495,10 @@ class CreepManager {
             if (role) {
                 role.run(creep);
             }
+            else {
+                // Крип без роли / legacy — ведем как bootstrap RCL1.
+                roles.bootstrap.run(creep);
+            }
         }
     }
 }
@@ -416,7 +507,7 @@ function loop() {
     MemoryManager.initialize();
     MemoryManager.cleanupDeadCreeps();
     DefenseManager.run();
-    LegacySpawn.run();
+    ColonySpawn.run();
     CreepManager.run();
 }
 
