@@ -13,17 +13,25 @@
 | `strategies/energy-economy` | strategies/energy-economy.md | planned |
 | `strategies/defense-towers` | strategies/defense-towers.md | planned |
 | `strategies/early-game` | [strategies/early-game.md](strategies/early-game.md) | готово |
+| `strategies/structure-planning` | [strategies/structure-planning.md](strategies/structure-planning.md) | готово |
 | `strategies/remote-mining` | strategies/remote-mining.md | planned |
-| `strategies/logistics-links` | strategies/logistics-links.md | planned |
+| `strategies/logistics-links` | [strategies/logistics-links.md](strategies/logistics-links.md) | готово |
 | `architecture/kernel` | architecture/kernel.md | planned |
 | `architecture/roles` | architecture/roles.md | planned |
 | `architecture/spawn-queue` | architecture/spawn-queue.md | planned |
 | `architecture/migration-from-js` | [architecture/migration-from-js.md](architecture/migration-from-js.md) | готово |
 | `architecture/deploy` | [architecture/deploy.md](architecture/deploy.md) | готово |
+| `architecture/lint` | [architecture/lint.md](architecture/lint.md) | готово |
 
 ## Сборка
 
-Только через Podman: `make build`. `node_modules` живут в образе, на хост не пробрасываются.
+Только через Podman:
+- `make build` — бандл в `dist/`
+- `make push-main` — бандл + upload по auth token
+- `make format` — Prettier + ESLint --fix (автовыравнивание в `src/`)
+- `make lint` — format + проверка стиля/типов/ESLint
+
+`node_modules` живут в образе, на хост не пробрасываются.
 
 ## Правило обновления
 

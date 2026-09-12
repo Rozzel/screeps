@@ -1,5 +1,5 @@
-import { Role } from "./roles/Role";
-import { RoleName } from "types/roles";
+import type { Role } from "./roles/Role";
+import type { RoleName } from "types/roles";
 import { BootstrapRole } from "./roles/BootstrapRole";
 import { CarrierRole } from "./roles/CarrierRole";
 import { HarvesterRole } from "./roles/HarvesterRole";

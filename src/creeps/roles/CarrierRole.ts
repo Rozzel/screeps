@@ -1,4 +1,4 @@
-import { Role } from "./Role";
+import type { Role } from "./Role";
 
 export class CarrierRole implements Role {
   run(creep: Creep): void {
@@ -32,7 +32,8 @@ export class CarrierRole implements Role {
       const targets = creep.room.find(FIND_STRUCTURES, {
         filter: (
           structure
-        ): structure is StructureExtension | StructureSpawn | StructureTower | StructurePowerSpawn => {
+        ): structure is
+          StructureExtension | StructureSpawn | StructureTower | StructurePowerSpawn => {
           return (
             (structure.structureType === STRUCTURE_EXTENSION ||
               structure.structureType === STRUCTURE_SPAWN ||

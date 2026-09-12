@@ -1,4 +1,4 @@
-import { RoleName } from "types/roles";
+import type { RoleName } from "types/roles";
 
 declare global {
   interface CreepMemory {

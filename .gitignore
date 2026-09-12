@@ -1,6 +1,9 @@
 node_modules/
 dist/
+.env
 screeps.json
+bot/
+/main.js
 *.log
 .DS_Store
 package-lock.json

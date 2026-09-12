@@ -1,4 +1,4 @@
-import { Role } from "./Role";
+import type { Role } from "./Role";
 
 export class HarvesterRole implements Role {
   run(creep: Creep): void {

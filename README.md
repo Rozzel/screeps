@@ -1,74 +1,55 @@
-# Screeps
+# Screeps bot (Rozzel)
 
-- [Screeps](#screeps)
-  - [Creeps skills](#creeps-skills)
-  - [Life time](#life-time)
-- [Costs](#costs)
-  - [Bodypart cost](#bodypart-cost)
-  - [Construction cost](#construction-cost)
-- [Примеры кода](#примеры-кода)
-  - [Найти имя комнаты](#найти-имя-комнаты)
+TypeScript-бот для **[Screeps: World](https://screeps.com/)** — MMO, где колонией управляет код на сервере игры.
 
-## Creeps skills
+## Ссылки
 
-+ WORK – ability to harvest energy, construct and repair structures, upgrade controllers.
-+ MOVE – ability to move.
-+ CARRY – ability to transfer energy.
-+ ATTACK – ability of short-range attack.
-+ RANGED_ATTACK – ability of ranged attack.
-+ HEAL – ability to heal others.
-+ TOUGH – "empty" part with the sole purpose of defense.
-+ CLAIM - ability to claim territory control.
+- Игра: [screeps.com](https://screeps.com/)
+- Документация игры: [docs.screeps.com](https://docs.screeps.com/)
+- API: [docs.screeps.com/api](https://docs.screeps.com/api/)
+- План работ: [`TODO.md`](TODO.md)
+- База знаний проекта: [`docs/index.md`](docs/index.md)
+- Правила для ИИ-агентов: [`AGENTS.md`](AGENTS.md)
+- Деплой: [`docs/architecture/deploy.md`](docs/architecture/deploy.md)
+- Ранняя игра: [`docs/strategies/early-game.md`](docs/strategies/early-game.md)
+- Планирование структур: [`docs/strategies/structure-planning.md`](docs/strategies/structure-planning.md)
 
-## Life time
-+ CREEP_LIFE_TIME: 1500
+## Что это за репозиторий
 
+Код колонии пишется в `src/`, собирается в один бандл и загружается в Scripts аккаунта Screeps. Каждый игровой тик сервер вызывает `loop()` из модуля `main`.
 
-Costs
-===
+Текущая колония (см. deploy-карточку): **shard2 / E33N16**, spawn **Spawn1**.
 
-[Constants](https://docs.screeps.com/api/#Constants)
+## Структура
 
+```text
+src/           — TypeScript-исходники (источник истины)
+  main.ts      — loop(): memory → defense → planners → spawn → creeps
+  creeps/      — роли крипов
+  managers/    — defense, дороги, container/storage/link planning
+  spawning/    — спавн по квотам
+  config/      — политика RCL
+  memory/      — Memory
+scripts/       — upload.js (деплой по auth token)
+docs/          — атомарные решения и стратегии
+vendor/@types/ — типы Screeps для IDE
+dist/          — результат make build
+Makefile       — Podman: build / lint / push
+```
 
-## Bodypart cost
-+ "move": 50,
-+ "work": 100,
-+ "attack": 80,
-+ "carry": 50,
-+ "heal": 250,
-+ "ranged_attack": 150,
-+ "tough": 10,
-+ "claim": 600,
+## Команды (только Podman)
 
+Локальный `npm install` не используется. Нужны Podman и `.env` с `SCREEPS_TOKEN` (шаблон: `.env.example`).
 
-## Construction cost
-+ "spawn": 15000,
-+ "extension": 3000,
-+ "road": 300,
-+ "constructedWall": 1,
-+ "rampart": 1,
-+ "link": 5000,
-+ "storage": 30000,
-+ "tower": 5000,
-+ "observer": 8000,
-+ "powerSpawn": 100000,
-+ "extractor": 5000,
-+ "lab": 50000,
-+ "terminal": 100000,
-+ "container": 5000,
-+ "nuker": 100000,
-+ "factory": 100000,
+| Команда | Действие |
+|---|---|
+| `make build` | Собрать бандл в `dist/` |
+| `make lint` | Формат + проверка типов и ESLint |
+| `make push-main` | Собрать и залить на ветку `default` |
+| `make push-sim` | Залить на ветку `sim` |
 
-# Примеры кода
+## Документация проекта
 
-## Найти имя комнаты
->for(let name in Game.rooms) {
->        
->        //currentRoom is now the instance of the roomobject
->        var currentRoom = Game.rooms[name];
->        var currentRoomName = currentRoom.name;
->        //Example:
->        //console.log("--- > currentRoom energy available: " + currentRoom.energyAvailable );
->        
->        console.log("currentRoomName " + currentRoomName);
->}
+Краткий вход — [`docs/index.md`](docs/index.md). Там же статусы карточек (early-game, structure-planning, deploy, lint, …).
+
+Канон разделов официальной документации: [`docs/official.md`](docs/official.md).

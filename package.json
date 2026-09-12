@@ -4,30 +4,33 @@
   "description": "Screeps: World bot (TypeScript)",
   "main": "dist/main.js",
   "scripts": {
-    "lint": "eslint \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.{ts,d.ts}\" \"scripts/**/*.js\" \".eslintrc.json\" \".prettierrc.json\" \"tsconfig.json\" \"package.json\" && eslint \"src/**/*.ts\" --fix",
+    "format:check": "prettier --check \"src/**/*.{ts,d.ts}\" \"scripts/**/*.js\" \".eslintrc.json\" \".prettierrc.json\" \"tsconfig.json\" \"package.json\"",
+    "lint": "eslint \"src/**/*.ts\" --max-warnings 0",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check": "npm run format:check && npm run typecheck && npm run lint",
     "build": "rollup -c",
-    "push-main": "rollup -c --environment DEST:main",
-    "push-sim": "rollup -c --environment DEST:sim",
-    "watch-main": "rollup -cw --environment DEST:main",
-    "watch-sim": "rollup -cw --environment DEST:sim"
+    "push-main": "rollup -c && node scripts/upload.js default",
+    "push-sim": "rollup -c && node scripts/upload.js sim",
+    "watch-main": "rollup -cw",
+    "watch-sim": "rollup -cw"
   },
-  "//": "Зависимости и npm-скрипты запускаются только в Podman-образе (make build / make push-main). Локально npm install не используем.",
+  "//": "Зависимости и npm-скрипты запускаются только в Podman-образе (make build / make push-main / make lint). Токен — SCREEPS_TOKEN в .env. Локально npm install не используем.",
   "license": "UNLICENSED",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
-    "@types/lodash": "3.10.2",
     "@types/screeps": "^3.3.8",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
-    "eslint": "^8.24.0",
-    "eslint-config-prettier": "^8.5.0",
-    "lodash": "^3.10.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.5.3",
     "rollup": "^2.56.2",
     "rollup-plugin-clear": "^2.0.7",
-    "rollup-plugin-screeps": "^1.0.1",
     "rollup-plugin-typescript2": "^0.31.0",
-    "typescript": "^4.8.4"
+    "screeps-api": "^1.16.0",
+    "typescript": "~5.9.2"
   },
   "dependencies": {
     "source-map": "~0.6.1"

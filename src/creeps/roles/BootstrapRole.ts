@@ -1,8 +1,9 @@
-import { Role } from "./Role";
+import type { Role } from "./Role";
+import { scavengeEnergy } from "creeps/tasks/scavengeEnergy";
 
 /**
  * Универсальный рабочий RCL1:
- * source → spawn/extensions → controller (если склад заполнен).
+ * loot/pickup → source → spawn/extensions → controller (если склад заполнен).
  */
 export class BootstrapRole implements Role {
   run(creep: Creep): void {
@@ -19,9 +20,14 @@ export class BootstrapRole implements Role {
   }
 
   private harvest(creep: Creep): void {
+    if (scavengeEnergy(creep)) {
+      return;
+    }
+
+    // Range, не Path: findClosestByPath дает null, если путь временно забит другими крипами.
     const source =
-      creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE) ??
-      creep.pos.findClosestByPath(FIND_SOURCES);
+      creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE) ??
+      creep.pos.findClosestByRange(FIND_SOURCES);
 
     if (!source) {
       creep.say("no src");
@@ -30,7 +36,11 @@ export class BootstrapRole implements Role {
 
     const result = creep.harvest(source);
     if (result === ERR_NOT_IN_RANGE) {
-      creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" } });
+      creep.moveTo(source, {
+        reusePath: 10,
+        ignoreCreeps: false,
+        visualizePathStyle: { stroke: "#ffaa00" }
+      });
     }
     creep.say("harvest");
   }
@@ -59,7 +69,7 @@ export class BootstrapRole implements Role {
 
   private upgrade(creep: Creep): void {
     const controller = creep.room.controller;
-    if (!controller || !controller.my) {
+    if (!controller?.my) {
       creep.say("idle");
       return;
     }

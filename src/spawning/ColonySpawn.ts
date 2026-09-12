@@ -1,5 +1,5 @@
 import { getBootstrapQuotas } from "config/rclPolicy";
-import { RoleName } from "types/roles";
+import type { RoleName } from "types/roles";
 
 export class ColonySpawn {
   static run(): void {
@@ -34,7 +34,7 @@ export class ColonySpawn {
     }
 
     for (const quota of quotas) {
-      const count = _.filter(roomCreeps, (creep: Creep) => creep.memory.role === quota.role).length;
+      const count = roomCreeps.filter((creep) => creep.memory.role === quota.role).length;
       if (count < quota.maxAmount) {
         ColonySpawn.trySpawn(spawn, quota.role, quota.role, quota.body);
         return;

@@ -282,22 +282,24 @@ Docs: [Game Loop](https://docs.screeps.com/game-loop.html), [Global Objects](htt
 
 ### Этап 3 — Экономика RCL1–3 (база)
 
-Docs: [Resources](https://docs.screeps.com/resources.html), [Control](https://docs.screeps.com/control.html), [Defense](https://docs.screeps.com/defense.html), API: `Source`, `StructureExtension`, `StructureContainer`, `StructureController`.
+Docs: [Resources](https://docs.screeps.com/resources.html), [Control](https://docs.screeps.com/control.html), [Defense](https://docs.screeps.com/defense.html), API: `Source`, `StructureExtension`, `StructureContainer`, `StructureController`. Карточка: `strategies/structure-planning`.
 
 - Static mining: miner → container у source.
+- **`StructurePlanner`:** с RCL2 автоматически сайты container у каждого source (ворота RCL; на RCL1 не ставим).
 - Carrier: dropped / container → spawn / extensions / tower.
 - Tower: attack → heal → repair (с порогом hits).
-- Extensions + базовые дороги (ручной план → позже planner).
-- Критерий: стабильный поток энергии, tower защищает комнату, контроллер не downgrade.
+- Extensions + дороги (`RoadPlanner` + builder).
+- Критерий: стабильный поток энергии, container у sources или sites, tower защищает комнату, контроллер не downgrade.
 
 ### Этап 4 — RCL4–5 (склад и links)
 
-Docs: [Resources](https://docs.screeps.com/resources.html), [Control](https://docs.screeps.com/control.html), API: `StructureStorage`, `StructureLink`.
+Docs: [Resources](https://docs.screeps.com/resources.html), [Control](https://docs.screeps.com/control.html), API: `StructureStorage`, `StructureLink`. Карточки: `strategies/structure-planning`, `strategies/logistics-links`.
 
+- **`StructurePlanner`:** RCL4+ сайт storage у spawn; RCL5+ при наличии storage/site — hub-link + source-link (если `CONTROLLER_STRUCTURES` позволяет).
 - Storage как буфер.
-- Links: source → hub → upgrader/storage (demand-driven).
+- `LinkManager`: source → hub → upgrader/storage (demand-driven), после постройки links.
 - Body scaling через `BodyBuilder` по `energyCapacityAvailable`.
-- Критерий: меньше пробегов carrier, запас энергии в storage.
+- Критерий: меньше пробегов carrier, запас энергии в storage, links передают энергию.
 
 ### Этап 5 — Remote mining
 
@@ -344,8 +346,10 @@ Docs: [CPU Limit](https://docs.screeps.com/cpu-limit.html), [Game Loop](https://
 4. [x] Перенести роли harvester / carrier / builder / upgrader (docs: Creeps + Simultaneous Actions)  
 5. [ ] SpawnQueue + rclPolicy для одной комнаты (docs: Control + StructureSpawn)  
 6. [ ] Kernel + RoomManager wiring (docs: Game Loop + Global Objects)  
-7. [ ] Static mining + containers policy (docs: Resources)  
-8. [x] Удалить зависимость от корневых `main.js` / `_units.js` / `_towers.js`  
+7. [x] StructurePlanner: container (RCL2+) / storage (RCL4+) / link (RCL5+), docs `structure-planning` + `logistics-links`  
+8. [ ] Static mining roles (miner→container, carrier) после постройки container  
+9. [ ] LinkManager transfer после постройки links  
+10. [x] Удалить зависимость от корневых `main.js` / `_units.js` / `_towers.js`  
 
 Атомарные задачи и апдейты ведутся в `docs/` (см. [индекс](docs/index.md)). Каждая карточка — один факт/решение; задачи ссылаются на ID карточек.
 
@@ -362,8 +366,9 @@ Docs: [CPU Limit](https://docs.screeps.com/cpu-limit.html), [Game Loop](https://
 | Экономика | `docs/strategies/energy-economy.md` |
 | Оборона | `docs/strategies/defense-towers.md` |
 | Ранняя игра | `docs/strategies/early-game.md` |
+| Планирование структур | `docs/strategies/structure-planning.md` |
 | Remote | `docs/strategies/remote-mining.md` |
-| Продвинутая логистика | `docs/strategies/logistics-links.md` |
+| Links | `docs/strategies/logistics-links.md` |
 | Архитектура kernel | `docs/architecture/kernel.md` |
 | Роли | `docs/architecture/roles.md` |
 | Спавн | `docs/architecture/spawn-queue.md` |
