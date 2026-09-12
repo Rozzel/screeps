@@ -1,0 +1,11 @@
+# node_modules и сборка только внутри образа. На хост не ставим зависимости.
+node_modules/
+npm-debug.log*
+.DS_Store
+dist/
+screeps.json
+.git
+*.log
+docs
+TODO.md
+README.md

@@ -1,7 +1,4 @@
-
-![Screeps](https://screeps.com/images/logotype-animated.svg "Screeps")
-Screeps
-===
+# Screeps
 
 - [Screeps](#screeps)
   - [Creeps skills](#creeps-skills)
@@ -9,8 +6,8 @@ Screeps
 - [Costs](#costs)
   - [Bodypart cost](#bodypart-cost)
   - [Construction cost](#construction-cost)
-- [Примеры кода](#%d0%9f%d1%80%d0%b8%d0%bc%d0%b5%d1%80%d1%8b-%d0%ba%d0%be%d0%b4%d0%b0)
-  - [Найти имя комнаты](#%d0%9d%d0%b0%d0%b9%d1%82%d0%b8-%d0%b8%d0%bc%d1%8f-%d0%ba%d0%be%d0%bc%d0%bd%d0%b0%d1%82%d1%8b)
+- [Примеры кода](#примеры-кода)
+  - [Найти имя комнаты](#найти-имя-комнаты)
 
 ## Creeps skills
 
