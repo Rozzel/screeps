@@ -15,6 +15,8 @@ build: image
 	podman cp $(CONTAINER):/app/dist ./dist
 	podman rm -f $(CONTAINER)
 	cp dist/main.js ./main.js
+	mkdir -p bot
+	cp dist/main.js ./bot/main.js
 
 lint: image
 	podman run --rm $(IMAGE) npm run lint

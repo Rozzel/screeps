@@ -9,11 +9,11 @@
 Предпочтительный путь (как раньше): **GitHub Integration** на screeps.com.
 
 ```text
-make build → main.js в корне → git push origin master → Account → GitHub → Sync → loop()
+make build → bot/main.js → git push origin master → GitHub Sync (Folder: bot) → loop()
 ```
 
-Настройка: [GitHub Integration](https://screeps.com/a/#!/account/github) → Sync from `screeps` → Folder пустой → Sync.  
-Screeps забирает JS-модули с ветки по умолчанию (`master`). TypeScript сам не компилирует — в репозитории нужен собранный `main.js`.
+Настройка: [GitHub Integration](https://screeps.com/a/#!/account/github) → Sync from `screeps` → Folder = `bot` → Sync.  
+В `bot/` лежит только собранный `main.js`, чтобы Screeps не тянул Makefile/docs как модули.
 
 Дополнительно: API push через token (`make push-main`) и GitHub Actions — см. ниже.
 ## Настройка
