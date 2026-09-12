@@ -22,11 +22,12 @@
 | `architecture/migration-from-js` | [architecture/migration-from-js.md](architecture/migration-from-js.md) | готово |
 | `architecture/deploy` | [architecture/deploy.md](architecture/deploy.md) | готово |
 | `architecture/lint` | [architecture/lint.md](architecture/lint.md) | готово |
+| `architecture/readable-bundle` | [reference/README.md](reference/README.md) | готово |
 
 ## Сборка
 
 Только через Podman:
-- `make build` — бандл в `dist/`
+- `make build` — бандл в `dist/` + читаемый `docs/reference/main.js`
 - `make push-main` — бандл + upload по auth token
 - `make format` — Prettier + ESLint --fix (автовыравнивание в `src/`)
 - `make lint` — format + проверка стиля/типов/ESLint

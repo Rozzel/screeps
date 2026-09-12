@@ -32,8 +32,9 @@ src/           — TypeScript-исходники (источник истины)
   memory/      — Memory
 scripts/       — upload.js (деплой по auth token)
 docs/          — атомарные решения и стратегии
+docs/reference/main.js — читаемый бандл для учебы (не в Screeps)
 vendor/@types/ — типы Screeps для IDE
-dist/          — результат make build
+dist/          — прод-сборка (минифицированная) для upload
 Makefile       — Podman: build / lint / push
 ```
 

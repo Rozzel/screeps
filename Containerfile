@@ -7,6 +7,8 @@ COPY package.json ./
 RUN npm install
 
 FROM deps AS build
+ARG GIT_SHA=nogit
+ENV GIT_SHA=$GIT_SHA
 COPY tsconfig.json rollup.config.js .eslintrc.json .prettierrc.json .prettierignore ./
 COPY vendor ./vendor
 COPY src ./src

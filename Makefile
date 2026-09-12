@@ -1,11 +1,12 @@
 IMAGE ?= screeps-bot
 CONTAINER ?= screeps-extract
+GIT_SHA ?= $(shell git rev-parse --short HEAD 2>/dev/null || echo nogit)
 
 .PHONY: image build format lint vendor-types push-main push-sim clean-container
 
 # Собрать образ (npm install + dist внутри контейнера)
 image:
-	podman build -t $(IMAGE) -f Containerfile .
+	podman build --build-arg GIT_SHA=$(GIT_SHA) -t $(IMAGE) -f Containerfile .
 
 # Обновить vendor/@types/screeps из образа (для IDE без локального node_modules)
 vendor-types: image
@@ -13,12 +14,14 @@ vendor-types: image
 	mkdir -p vendor/@types
 	podman run --rm $(IMAGE) tar -C /app/node_modules/@types -cf - screeps | tar -C vendor/@types -xf -
 
-# Собрать бандл в образе, скопировать только dist/ (без upload)
+# Собрать бандл в образе: dist/ (прод) + docs/reference/main.js (читаемый)
 build: image
 	-podman rm -f $(CONTAINER) >/dev/null 2>&1
 	podman create --name $(CONTAINER) $(IMAGE)
 	rm -rf dist
+	mkdir -p docs/reference
 	podman cp $(CONTAINER):/app/dist ./dist
+	podman cp $(CONTAINER):/app/docs/reference/main.js ./docs/reference/main.js
 	podman rm -f $(CONTAINER)
 
 # Prettier + ESLint --fix пишут в смонтированные исходники на хосте

@@ -1,4 +1,5 @@
 dist/
+docs/reference/main.js
 node_modules/
 *.md
 .env
